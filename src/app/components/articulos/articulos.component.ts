@@ -175,4 +175,12 @@ export class ArticulosComponent implements OnInit {
   ImprimirListado() {
     alert('Sin desarrollar...');
   }
+
+  GetArticuloFamiliaNombre(Id) {
+    var ArticuloFamilia = this.Familias.filter(
+      x => x.IdArticuloFamilia === Id
+    )[0];
+    if (ArticuloFamilia) return ArticuloFamilia.Nombre;
+    else return '';
+  }
 }

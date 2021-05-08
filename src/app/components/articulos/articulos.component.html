@@ -45,6 +45,7 @@
         <th class="text-center">Fecha de Alta</th>
         <th class="text-center">Activo</th>
         <th class="text-center text-nowrap">Acciones</th>
+        <th class="text-center">Familia</th>
       </tr>
     </thead>
     <tbody>
@@ -54,6 +55,7 @@
         <td class="text-right">{{item.Stock}}</td>
         <td>{{item.FechaAlta| date:'dd/MM/yyyy'}}</td>
         <td>{{item.Activo ? 'SI' : 'NO'}}</td>
+        <td>{{GetArticuloFamiliaNombre(item.IdArticuloFamilia)}}</td>
         <td class="text-center text-nowrap">
           <button type="button" class="btn btn-sm btn-outline-primary" title="Consultar" (click)="Consultar(item)">
                         <span class="fas fa-eye"></span>
