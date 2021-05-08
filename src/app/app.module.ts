@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -25,7 +26,8 @@ import { MockArticulosService } from './services/mock-articulos.service';
       { path: 'inicio', component: InicioComponent },
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
       { path: 'articulos', component: ArticulosComponent }
-    ])
+    ]),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
