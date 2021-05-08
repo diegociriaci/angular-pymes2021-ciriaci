@@ -153,6 +153,7 @@ export class ArticulosComponent implements OnInit {
     }
   }
 
+  // representa la baja logica
   ActivarDesactivar(Dto) {
     var resp = confirm(
       'Esta seguro de ' +
