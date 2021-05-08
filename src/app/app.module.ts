@@ -39,7 +39,7 @@ import { MockArticulosService } from './services/mock-articulos.service';
   providers: [
     MockArticulosFamiliasService,
     ArticulosFamiliasService,
-    { provide: APP_BASE_HREF, useValue: '/', providers: [MockArticulosService] }
+    { provide: APP_BASE_HREF, useValue: '/' }
   ]
 })
 export class AppModule {}

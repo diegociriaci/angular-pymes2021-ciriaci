@@ -169,7 +169,7 @@
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2" for="Activo">Activo</label>
       <div class="col-sm-6">
-        <select name="Activo" [attr.disabled]=="true" class="form-control">
+        <select name="Activo" [attr.disabled]="true" class="form-control">
                     <option *ngFor="let opt of OpcionesActivo">
                         {{ opt.Nombre }}
                     <option>
