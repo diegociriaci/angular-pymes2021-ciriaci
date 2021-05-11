@@ -5,6 +5,8 @@ import { Articulo } from '../../models/articulo';
 import { ArticuloFamilia } from '../../models/articulo-familia';
 import { MockArticulosService } from '../../services/mock-articulos.service';
 import { MockArticulosFamiliasService } from '../../services/mock-articulos-familias.service';
+import { ArticulosFamiliasService } from '../../services/articulos-familias.service';
+import { ArticulosService } from '../../services/articulos.service';
 
 @Component({
   selector: 'app-articulos',
@@ -39,9 +41,11 @@ export class ArticulosComponent implements OnInit {
   ];
 
   constructor(
-    private articulosService: MockArticulosService,
-    private articulosFamiliasService: MockArticulosFamiliasService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    //private articulosService: MockArticulosService,
+    //private articulosFamiliasService: MockArticulosFamiliasService,
+    private articulosService: ArticulosService,
+    private articulosFamiliasService: ArticulosFamiliasService
   ) {}
 
   FormBusqueda: FormGroup;

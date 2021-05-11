@@ -15,6 +15,7 @@ import { ArticulosFamiliasService } from './services/articulos-familias.service'
 import { MenuComponent } from './components/menu/menu.component';
 import { ArticulosComponent } from './components/articulos/articulos.component';
 import { MockArticulosService } from './services/mock-articulos.service';
+import { ArticulosService } from './services/articulos.service';
 
 @NgModule({
   imports: [
