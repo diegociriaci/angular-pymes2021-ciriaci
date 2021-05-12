@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -28,7 +30,8 @@ import { ArticulosService } from './services/articulos.service';
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
       { path: 'articulos', component: ArticulosComponent }
     ]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbPaginationModule
   ],
   declarations: [
     AppComponent,
