@@ -107,7 +107,15 @@
                 Nombre <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" name="Nombre" class="form-control" formControlName="Nombre"/>
+        <input type="text" name="Nombre" class="form-control text-uppercase" formControlName="Nombre"/>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Nombre.errors 
+        && FormRegistro.controls.Nombre.errors.required">
+          Dato requerido.
+        </span>
+        <span class="text-danger" *ngIf="
+              FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength ">
+            Dato texto, 4 a 55 caracteres.
+        </span>
       </div>
     </div>
 
@@ -118,6 +126,13 @@
             </label>
       <div class="col-sm-6">
         <input type="text" name="Precio" class="form-control" formControlName="Precio"/>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Precio.errors 
+        && FormRegistro.controls.Precio.errors.required">
+          Dato requerido.
+      </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Precio.errors?.pattern">
+          Dato numérico, 1 a 7 dígitos.
+      </span>
       </div>
     </div>
 
@@ -128,6 +143,13 @@
             </label>
       <div class="col-sm-6">
         <input type="text" name="Stock" class="form-control" formControlName="Stock"/>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Stock.errors 
+      && FormRegistro.controls.Stock.errors.required">
+          Dato requerido.
+      </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Stock.errors?.pattern">
+          Dato numérico, 1 a 10 dígitos.
+      </span>
       </div>
     </div>
 
@@ -138,6 +160,13 @@
             </label>
       <div class="col-sm-6">
         <input type="text" name="CodigoDeBarra" class="form-control" formControlName="CodigoDeBarra"/>
+        <span class="text-danger" *ngIf="FormRegistro.controls.CodigoDeBarra.errors 
+      && FormRegistro.controls.CodigoDeBarra.errors.required">
+          Dato requerido.
+      </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.CodigoDeBarra.errors?.pattern">
+          Dato numérico, 13 dígitos.
+      </span>
       </div>
     </div>
 
@@ -152,6 +181,11 @@
                         {{ opt.Nombre }}
                     <option>
                 </select>
+        <span class="text-danger" *ngIf="FormRegistro.controls.IdArticuloFamilia.errors 
+      && FormRegistro.controls.IdArticuloFamilia.errors.required">
+          Dato requerido.
+      </span>
+
       </div>
     </div>
 
@@ -162,6 +196,11 @@
             </label>
       <div class="col-sm-6">
         <input class="form-control" name="FechaAlta" formControlName="FechaAlta"/>
+        <span class="text-danger" *ngIf="FormRegistro.controls.FechaAlta.errors 
+      && FormRegistro.controls.FechaAlta.errors.required">
+          Dato requerido.
+      </span>
+
       </div>
     </div>
 
@@ -178,7 +217,7 @@
     </div>
   </fieldset>
 
-  <!-- Botones Grabar, Cancelar/Volver' -->
+  <!-- Botones Grabar, Cancelar/Volver -->
   <div class="row justify-content-center">
     <button type="button" class="btn btn-primary" (click)="Grabar()" *ngIf=" AccionABMC == 'A'  || AccionABMC == 'M'">
             <span class="fas fa-check"></span> Grabar
