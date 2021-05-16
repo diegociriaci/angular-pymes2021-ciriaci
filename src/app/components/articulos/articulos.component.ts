@@ -103,7 +103,6 @@ export class ArticulosComponent implements OnInit {
 
   // Buscar segun los filtros, establecidos en FormRegistro
   Buscar() {
-    this.modalDialogService.BloquearPantalla();
     this.articulosService
       .get(
         this.FormBusqueda.value.Nombre,
@@ -113,7 +112,6 @@ export class ArticulosComponent implements OnInit {
       .subscribe((res: any) => {
         this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
-        this.modalDialogService.DesbloquearPantalla();
       });
   }
 
@@ -142,8 +140,7 @@ export class ArticulosComponent implements OnInit {
   Modificar(Dto) {
     if (!Dto.Activo) {
       this.modalDialogService.Alert(
-        'No puede modificarse un registro Inactivo.',
-        'Mensaje de atencion'
+        'No puede modificarse un registro Inactivo.'
       );
       return;
     }
