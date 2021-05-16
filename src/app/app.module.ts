@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { MockArticulosService } from './services/mock-articulos.service';
 import { ArticulosService } from './services/articulos.service';
 import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
 import { ModalDialogService } from './services/modal-dialog.service';
+import { MyInterceptor } from './shared/my-interceptor';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { ModalDialogService } from './services/modal-dialog.service';
   providers: [
     MockArticulosFamiliasService,
     ArticulosFamiliasService,
-    { provide: APP_BASE_HREF, useValue: '/' }
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
   ]
 })
 export class AppModule {}

@@ -122,13 +122,14 @@ export class ArticulosComponent implements OnInit {
     window.scroll(0, 0); // ir al incio del scroll
 
     this.articulosService.getById(Dto.IdArticulo).subscribe((res: any) => {
-      const itemCopy = { ...res }; // hacemos copia para no modificar el array original del mock
+      this.FormRegistro.patchValue(res);
 
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = itemCopy.FechaAlta.substr(0, 10).split('-');
-      itemCopy.FechaAlta = arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0];
+      var arrFecha = res.FechaAlta.substr(0, 10).split('-');
+      this.FormRegistro.controls.FechaAlta.patchValue(
+        arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0]
+      );
 
-      this.FormRegistro.patchValue(itemCopy);
       this.AccionABMC = AccionABMC;
     });
   }
@@ -146,9 +147,9 @@ export class ArticulosComponent implements OnInit {
       );
       return;
     }
-    this.BuscarPorId(Dto, 'M');
     this.submitted = false;
     this.FormRegistro.markAsUntouched();
+    this.BuscarPorId(Dto, 'M');
   }
 
   // grabar tanto altas como modificaciones
@@ -175,7 +176,7 @@ export class ArticulosComponent implements OnInit {
     if (this.AccionABMC == 'A') {
       this.articulosService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
-        alert('Registro agregado correctamente.');
+        this.modalDialogService.Alert('Registro agregado correctamente.');
         this.Buscar();
       });
     } else {
@@ -184,7 +185,7 @@ export class ArticulosComponent implements OnInit {
         .put(itemCopy.IdArticulo, itemCopy)
         .subscribe((res: any) => {
           this.Volver();
-          alert('Registro modificado correctamente.');
+          this.modalDialogService.Alert('Registro modificado correctamente.');
           this.Buscar();
         });
     }
