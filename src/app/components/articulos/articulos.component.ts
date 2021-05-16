@@ -139,7 +139,9 @@ export class ArticulosComponent implements OnInit {
   Modificar(Dto) {
     if (!Dto.Activo) {
       this.modalDialogService.Alert(
-        'No puede modificarse un registro Inactivo.');
+        'No puede modificarse un registro Inactivo.',
+        'Mensaje de atencion'
+      );
       return;
     }
     this.BuscarPorId(Dto, 'M');
@@ -188,16 +190,19 @@ export class ArticulosComponent implements OnInit {
 
   // representa la baja logica
   ActivarDesactivar(Dto) {
-    var resp = confirm(
+    this.modalDialogService.Confirm(
       'Esta seguro de ' +
         (Dto.Activo ? 'desactivar' : 'activar') +
-        ' este registro?'
+        ' este registro?',
+      'Cambiar estado del producto',
+      undefined,
+      undefined,
+      () =>
+        this.articulosService
+          .delete(Dto.IdArticulo)
+          .subscribe((res: any) => this.Buscar()),
+      null
     );
-    if (resp === true) {
-      this.articulosService
-        .delete(Dto.IdArticulo)
-        .subscribe((res: any) => this.Buscar());
-    }
   }
 
   // Volver desde Agregar/Modificar
