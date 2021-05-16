@@ -195,7 +195,7 @@ FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.e
                 Fecha de alta <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input class="form-control" name="FechaAlta" formControlName="FechaAlta"/>
+        <input class="form-control" name="FechaAlta" formControlName="FechaAlta" [ngClass]="{'is-invalid': (FormRegistro.controls.FechaAlta.touched || submitted) && FormRegistro.controls.FechaAlta.errors}" />
         <span class="text-danger" *ngIf="(FormRegistro.controls.FechaAlta.touched || submitted) 
       && FormRegistro.controls.FechaAlta.errors.required">
           Dato requerido.
