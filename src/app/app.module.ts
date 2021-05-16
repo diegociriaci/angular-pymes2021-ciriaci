@@ -6,7 +6,10 @@ import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbPaginationModule,
+  NgbModalModule
+} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -18,6 +21,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ArticulosComponent } from './components/articulos/articulos.component';
 import { MockArticulosService } from './services/mock-articulos.service';
 import { ArticulosService } from './services/articulos.service';
+import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
+import { ModalDialogService } from './services/modal-dialog.service';
 
 @NgModule({
   imports: [
@@ -31,7 +36,8 @@ import { ArticulosService } from './services/articulos.service';
       { path: 'articulos', component: ArticulosComponent }
     ]),
     ReactiveFormsModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgbModalModule
   ],
   declarations: [
     AppComponent,
@@ -39,7 +45,8 @@ import { ArticulosService } from './services/articulos.service';
     InicioComponent,
     ArticulosFamiliasComponent,
     MenuComponent,
-    ArticulosComponent
+    ArticulosComponent,
+    ModalDialogComponent
   ],
   bootstrap: [AppComponent],
   providers: [

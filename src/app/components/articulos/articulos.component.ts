@@ -7,6 +7,7 @@ import { MockArticulosService } from '../../services/mock-articulos.service';
 import { MockArticulosFamiliasService } from '../../services/mock-articulos-familias.service';
 import { ArticulosFamiliasService } from '../../services/articulos-familias.service';
 import { ArticulosService } from '../../services/articulos.service';
+import { ModalDialogService } from '../../services/modal-dialog.service';
 
 @Component({
   selector: 'app-articulos',
@@ -45,7 +46,8 @@ export class ArticulosComponent implements OnInit {
     //private articulosService: MockArticulosService,
     //private articulosFamiliasService: MockArticulosFamiliasService,
     private articulosService: ArticulosService,
-    private articulosFamiliasService: ArticulosFamiliasService
+    private articulosFamiliasService: ArticulosFamiliasService,
+    private modalDialogService: ModalDialogService
   ) {}
 
   FormBusqueda: FormGroup;
@@ -136,7 +138,8 @@ export class ArticulosComponent implements OnInit {
   // comienza la modificacion, luego la confirma con el metodo Grabar
   Modificar(Dto) {
     if (!Dto.Activo) {
-      alert('No puede modificarse un registro Inactivo.');
+      this.modalDialogService.Alert(
+        'No puede modificarse un registro Inactivo.');
       return;
     }
     this.BuscarPorId(Dto, 'M');
