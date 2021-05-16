@@ -103,6 +103,7 @@ export class ArticulosComponent implements OnInit {
 
   // Buscar segun los filtros, establecidos en FormRegistro
   Buscar() {
+    this.modalDialogService.BloquearPantalla();
     this.articulosService
       .get(
         this.FormBusqueda.value.Nombre,
@@ -112,6 +113,7 @@ export class ArticulosComponent implements OnInit {
       .subscribe((res: any) => {
         this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
+        this.modalDialogService.DesbloquearPantalla();
       });
   }
 
@@ -194,7 +196,7 @@ export class ArticulosComponent implements OnInit {
       'Esta seguro de ' +
         (Dto.Activo ? 'desactivar' : 'activar') +
         ' este registro?',
-      'Cambiar estado del producto',
+      undefined,
       undefined,
       undefined,
       () =>
