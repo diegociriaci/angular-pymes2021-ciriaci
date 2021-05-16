@@ -51,6 +51,8 @@ export class ArticulosComponent implements OnInit {
   FormBusqueda: FormGroup;
   FormRegistro: FormGroup;
 
+  submitted: boolean = false;
+
   ngOnInit() {
     this.FormBusqueda = this.formBuilder.group({
       Nombre: [null],
@@ -58,12 +60,26 @@ export class ArticulosComponent implements OnInit {
     });
     this.FormRegistro = this.formBuilder.group({
       IdArticulo: [null],
-      Nombre: [null,  [Validators.required, Validators.minLength(4), Validators.maxLength(55)]  ],
-      Precio: [null, [Validators.required, Validators.pattern("[0-9]{1,7}")]],
-      Stock: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]],
-      CodigoDeBarra: [null, [Validators.required, Validators.pattern("[0-9]{13}")]],
-      IdArticuloFamilia: [null, [Validators.required] ],
-      FechaAlta: [ null,  [ Validators.required ] ],
+      Nombre: [
+        null,
+        [Validators.required, Validators.minLength(4), Validators.maxLength(55)]
+      ],
+      Precio: [null, [Validators.required, Validators.pattern('[0-9]{1,7}')]],
+      Stock: [null, [Validators.required, Validators.pattern('[0-9]{1,10}')]],
+      CodigoDeBarra: [
+        null,
+        [Validators.required, Validators.pattern('[0-9]{13}')]
+      ],
+      IdArticuloFamilia: [null, [Validators.required]],
+      FechaAlta: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(
+            '(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[012])[-/](19|20)[0-9]{2}'
+          )
+        ]
+      ],
       Activo: [false]
     });
 
@@ -79,6 +95,8 @@ export class ArticulosComponent implements OnInit {
   Agregar() {
     this.AccionABMC = 'A';
     this.FormRegistro.reset({ Activo: true, IdArticulo: 0 });
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
   }
 
   // Buscar segun los filtros, establecidos en FormRegistro
@@ -122,15 +140,18 @@ export class ArticulosComponent implements OnInit {
       return;
     }
     this.BuscarPorId(Dto, 'M');
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
   }
 
   // grabar tanto altas como modificaciones
   Grabar() {
+    this.submitted = true;
     // verificar que los validadores esten OK
     if (this.FormRegistro.invalid) {
       return;
     }
-    
+
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
     const itemCopy = { ...this.FormRegistro.value };
 
