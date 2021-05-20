@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Cliente } from '../../models/cliente';
-import { MockClientesService } from '../../services/mock-clientes.service';
+import { ClientesService } from '../../services/clientes.service';
+import { ModalDialogService } from '../../services/modal-dialog.service';
 
 @Component({
   selector: 'app-clientes',
@@ -33,7 +36,16 @@ export class ClientesComponent implements OnInit {
     { Id: false, Nombre: 'NO' }
   ];
 
-  constructor(private clientesService: MockClientesService) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    private clientesService: ClientesService,
+    private modalDialogService: ModalDialogService
+  ) {}
+
+  FormBusqueda: FormGroup;
+  FormRegistro: FormGroup;
+
+  submitted: boolean = false;
 
   ngOnInit() {}
 
@@ -62,7 +74,7 @@ export class ClientesComponent implements OnInit {
   // comienza la modificacion, luego la confirma con el metodo Grabar
   Modificar(Dto) {
     if (!Dto.Activo) {
-      alert('No puede modificarse un registro Inactivo.');
+      this.modalDialogService.Alert('No puede modificarse un registro Inactivo.');
       return;
     }
     this.BuscarPorId(Dto, 'M');

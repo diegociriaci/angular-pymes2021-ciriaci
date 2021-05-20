@@ -26,6 +26,7 @@ import { ModalDialogService } from './services/modal-dialog.service';
 import { MyInterceptor } from './shared/my-interceptor';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { MockClientesService } from './services/mock-clientes.service';
+import { ClientesService } from './services/clientes.service';
 
 @NgModule({
   imports: [
