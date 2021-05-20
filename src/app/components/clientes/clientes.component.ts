@@ -47,22 +47,33 @@ export class ClientesComponent implements OnInit {
 
   submitted: boolean = false;
 
-  ngOnInit() {}
+  ngOnInit() {this.FormBusqueda = this.formBuilder.group({
+      Nombre: [null],
+      Activo: [null]
+    });}
 
   Agregar() {
     this.AccionABMC = 'A';
+    this.FormRegistro.reset({ Activo: true, IdArticulo: 0 });
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
   }
 
   // Buscar segun los filtros, establecidos en FormRegistro
   Buscar() {
-    this.clientesService.get('', null, this.Pagina).subscribe((res: any) => {
-      this.Items = res.Items;
-      this.RegistrosTotal = res.RegistrosTotal;
-    });
+    this.clientesService
+      .get(
+        this.FormBusqueda.value.Nombre,
+        this.FormBusqueda.value.Activo,
+        this.Pagina
+      )
+      .subscribe((res: any) => {
+        this.Items = res.Items;
+        this.RegistrosTotal = res.RegistrosTotal;
+      });
   }
 
-  // Obtengo un registro especifico según el Id
-  BuscarPorId(Dto, AccionABMC) {
+   BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
     this.AccionABMC = AccionABMC;
   }
