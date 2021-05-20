@@ -50,7 +50,7 @@
       <tr *ngFor="let item of Items">
         <td>{{item.Nombre | uppercase}}</td>
         <td class="text-right">{{item.Cuit}}</td>
-        <td class="text-right">{{item.CreditoMaximo}}</td>
+        <td class="text-right">{{item.CreditoMaximo | currency: "$"}}</td>
         <td>{{item.FechaNacimiento| date:'dd/MM/yyyy'}}</td>
         <td>{{item.Activo ? 'SI' : 'NO'}}</td>
         <td class="text-center text-nowrap">
@@ -116,7 +116,6 @@
         <input type="text" name="CreditoMaximo" class="form-control" />
       </div>
     </div>
-
 
     <!--campo cuit-->
     <div class="form-group row">
