@@ -39,8 +39,8 @@
     <thead>
       <tr>
         <th class="text-center">Nombre</th>
-        <th class="text-center">Nro Doc</th>
         <th class="text-center">CUIT</th>
+        <th class="text-center">Credito Maximo</th>
         <th class="text-center">Fecha de Nacimiento</th>
         <th class="text-center">Activo</th>
         <th class="text-center text-nowrap">Acciones</th>
@@ -49,8 +49,8 @@
     <tbody>
       <tr *ngFor="let item of Items">
         <td>{{item.Nombre | uppercase}}</td>
-        <td class="text-right">{{item.NumeroDocumento}}</td>
         <td class="text-right">{{item.Cuit}}</td>
+        <td class="text-right">{{item.CreditoMaximo}}</td>
         <td>{{item.FechaNacimiento| date:'dd/MM/yyyy'}}</td>
         <td>{{item.Activo ? 'SI' : 'NO'}}</td>
         <td class="text-center text-nowrap">
@@ -107,13 +107,13 @@
       </div>
     </div>
 
-    <!--campo numero de documento-->
+    <!--campo credito maximo-->
     <div class="row form-group">
-      <label class="col-form-label col-sm-2 offset-sm-2" for="NumeroDocumento">
-                Nro Doc <span class="text-danger">*</span>
+      <label class="col-form-label col-sm-2 offset-sm-2" for="CreditoMaximo">
+                Credito Maximo <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" name="NumeroDocumento" class="form-control" />
+        <input type="text" name="CreditoMaximo" class="form-control" />
       </div>
     </div>
 

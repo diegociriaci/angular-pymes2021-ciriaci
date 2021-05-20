@@ -31,7 +31,7 @@ export class MockClientesService {
   post(obj: Cliente) {
     obj.IdCliente = 56;
     
-    obj.NumeroDocumento = +obj.NumeroDocumento;
+    obj.CreditoMaximo = +obj.CreditoMaximo;
     obj.Cuit = obj.Cuit;
 
     Clientes.push(obj);
@@ -46,7 +46,7 @@ export class MockClientesService {
       }
     });
     
-    obj.NumeroDocumento = +obj.NumeroDocumento;
+    obj.CreditoMaximo = +obj.CreditoMaximo;
     obj.Cuit = obj.Cuit;
 
     Clientes[indice] = obj;
