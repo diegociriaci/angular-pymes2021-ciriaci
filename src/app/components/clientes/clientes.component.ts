@@ -120,6 +120,7 @@ export class ClientesComponent implements OnInit {
 
   // grabar tanto altas como modificaciones
   Grabar() {
+    this.submitted = true;
     // verificar que los validadores esten OK
      if (this.FormRegistro.invalid) {
       return;
