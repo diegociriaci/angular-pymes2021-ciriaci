@@ -35,7 +35,7 @@
 </form>
 
 <!-- Tabla de resutados de busqueda y Paginador-->
-<div id="divTablaResultados" *ngIf="AccionABMC == 'L' && Items?.length > 0">
+<div id="divTablaResultados" class="col-sm-12" *ngIf="AccionABMC == 'L' && Items?.length > 0">
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -69,17 +69,18 @@
       </tr>
     </tbody>
   </table>
+
   <!-- Paginador-->
   <div id="divPaginador" class="col-sm-12">
     <div class="row bg-light">
-      <div class="col">
-        <span class="label label-default">Registros: {{RegistrosTotal}}</span>
+      <div class="col-sm-3">
+        <span class="label label-default font-weight-bold">Registros: {{RegistrosTotal}}</span>
       </div>
-      <div class="col text-center">
+      <div class="col-sm-6 text-center">
         <ngb-pagination [(page)]="Pagina" (pageChange)="Buscar()" [pageSize]="10" [maxSize]="10"
           [collectionSize]="RegistrosTotal"></ngb-pagination>
       </div>
-      <div class="col text-right">
+      <div class="col-sm-3 text-right">
         <button type="button" class="btn btn-primary" (click)="ImprimirListado()">
                     <span class="fas fa-print"></span>
                     Imprimir
@@ -112,10 +113,10 @@
         && FormRegistro.controls.Nombre.errors?.required">
         Dato requerido.
       </span>
-      <span class="text-danger" *ngIf="
-                       FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength ">
-                    Dato texto, 4 a 55 caracteres.
-                </span>
+      <span class="text-danger" *ngIf="(FormRegistro.controls.Nombre.touched || submitted) 
+          && (FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength)">
+          Dato texto, 4 a 55 caracteres.
+      </span>
       </div>
     </div>
 
@@ -132,7 +133,8 @@
         && FormRegistro.controls.CreditoMaximo.errors?.required">
         Dato requerido.
       </span>
-      <span class="text-danger" *ngIf="FormRegistro.controls.CreditoMaximo.errors?.pattern">
+      <span class="text-danger" *ngIf="(FormRegistro.controls.CreditoMaximo.touched || submitted) 
+          && FormRegistro.controls.CreditoMaximo.errors?.pattern">
         Dato numérico, 1 a 7 dígitos.
       </span>
       </div>
@@ -151,7 +153,8 @@
         && FormRegistro.controls.Cuit.errors?.required">
         Dato requerido.
       </span>
-      <span class="text-danger" *ngIf="FormRegistro.controls.Cuit.errors?.pattern">
+      <span class="text-danger" *ngIf="(FormRegistro.controls.Cuit.touched || submitted) 
+          && FormRegistro.controls.Cuit.errors?.pattern">
         Dato numérico, 11 digitos.
       </span>
       </div>
@@ -195,6 +198,7 @@
     <button type="button" class="btn btn-primary" (click)="Grabar()" *ngIf=" AccionABMC == 'A'  || AccionABMC == 'M'"  >
             <span class="fas fa-check"></span> Grabar
         </button>
+    &nbsp;
     <button type="button" class="btn btn-warning" (click)="Volver()">
             <span class="fas fa-undo"></span> {{AccionABMC == 'A'  || AccionABMC == 'M' ? 'Cancelar' : 'Volver'}}
         </button>

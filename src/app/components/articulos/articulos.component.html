@@ -36,7 +36,6 @@
 
 <!-- Tabla de resutados de busqueda y Paginador-->
 <div id="divTablaResultados" class="col-sm-12" *ngIf="AccionABMC == 'L' && Items?.length > 0">
-
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -116,7 +115,7 @@
             Dato requerido.
         </span>
         <span class="text-danger" *ngIf="(FormRegistro.controls.Nombre.touched || submitted) 
-            && (FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength) ">
+            && (FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength)">
             Dato texto, 4 a 55 caracteres.
         </span>
       </div>
