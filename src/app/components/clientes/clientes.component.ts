@@ -52,11 +52,11 @@ export class ClientesComponent implements OnInit {
       Activo: [null]
     });
     this.FormRegistro = this.formBuilder.group({
-      IdCliente: [null],
-      Nombre: [null],
-      Cuit: [null],
-      CreditoMaximo: [null],
-      FechaNacimiento: [null],
+      IdCliente: [null, [Validators.required]  ],
+      Nombre: [null, [Validators.required]  ],
+      Cuit: [null, [Validators.required]  ],
+      CreditoMaximo: [null, [Validators.required]  ],
+      FechaNacimiento: [null, [Validators.required]  ],
       Activo: [false]
     });
 
@@ -83,10 +83,23 @@ export class ClientesComponent implements OnInit {
       });
   }
 
-   BuscarPorId(Dto, AccionABMC) {
+  // Obtengo un registro especifico según el Id
+  BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
-    this.AccionABMC = AccionABMC;
+ 
+    this.clientesService.getById(Dto.IdCliente).subscribe((res: any) => {
+  
+      const itemCopy = { ...res };  // hacemos copia para no modificar el array original del mock
+      
+      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
+      var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("-");
+      itemCopy.FechaNacimiento = arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0];
+
+      this.FormRegistro.patchValue(itemCopy);
+      this.AccionABMC = AccionABMC;
+    });
   }
+
 
   Consultar(Dto) {
     this.BuscarPorId(Dto, 'C');
@@ -103,17 +116,54 @@ export class ClientesComponent implements OnInit {
 
   // grabar tanto altas como modificaciones
   Grabar() {
-    alert('Registro Grabado!');
-    this.Volver();
+ 
+    //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
+    const itemCopy = { ...this.FormRegistro.value };
+ 
+    //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
+    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
+    if (arrFecha.length == 3)
+      itemCopy.FechaNacimiento = 
+          new Date(
+            arrFecha[2],
+            arrFecha[1] - 1,
+            arrFecha[0]
+          ).toISOString();
+ 
+    // agregar post
+    if (this.AccionABMC == "A") {
+      this.clientesService.post(itemCopy).subscribe((res: any) => {
+        this.Volver();
+        alert('Registro agregado correctamente.');
+        this.Buscar();
+      });
+    } else {
+      // modificar put
+      this.clientesService
+        .put(itemCopy.IdCliente, itemCopy)
+        .subscribe((res: any) => {
+          this.Volver();
+          alert('Registro modificado correctamente.');
+          this.Buscar();
+        });
+    }
   }
 
+
+  // representa la baja logica 
   ActivarDesactivar(Dto) {
     var resp = confirm(
-      'Esta seguro de ' +
-        (Dto.Activo ? 'desactivar' : 'activar') +
-        ' este registro?'
-    );
-    if (resp === true) alert('registro activado/desactivado!');
+      "Esta seguro de " +
+        (Dto.Activo ? "desactivar" : "activar") +
+        " este registro?");
+    if (resp === true)
+    {
+     this.clientesService  
+          .delete(Dto.IdCliente)
+          .subscribe((res: any) => 
+            this.Buscar()
+          );
+    }
   }
 
   // Volver desde Agregar/Modificar
