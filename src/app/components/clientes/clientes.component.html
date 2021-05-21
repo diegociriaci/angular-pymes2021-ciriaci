@@ -105,9 +105,9 @@
             </label>
       <div class="col-sm-6">
         <input type="text" class="form-control text-uppercase" formControlName="Nombre" />
-      <span class="text-danger" *ngIf="FormRegistro.controls.Nombre.errors 
-      && FormRegistro.controls.Nombre.errors.required">
-          Dato requerido.
+      <span class="text-danger" *ngIf="(FormRegistro.controls.Nombre.touched || submitted) 
+        && FormRegistro.controls.Nombre.errors?.required">
+        Dato requerido.
       </span>
       <span class="text-danger" *ngIf="
                        FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength ">
@@ -123,9 +123,9 @@
             </label>
       <div class="col-sm-6">
         <input type="text" class="form-control" formControlName="CreditoMaximo" />
-      <span class="text-danger" *ngIf="FormRegistro.controls.CreditoMaximo.errors 
-      && FormRegistro.controls.CreditoMaximo.errors.required">
-          Dato requerido.
+      <span class="text-danger" *ngIf="(FormRegistro.controls.CreditoMaximo.touched || submitted) 
+        && FormRegistro.controls.CreditoMaximo.errors?.required">
+        Dato requerido.
       </span>
       <span class="text-danger" *ngIf="FormRegistro.controls.CreditoMaximo.errors?.pattern">
         Dato numérico, 1 a 7 dígitos.
@@ -140,9 +140,9 @@
             </label>
       <div class="col-sm-6">
         <input type="text" class="form-control" formControlName="Cuit" />
-      <span class="text-danger" *ngIf="FormRegistro.controls.Cuit.errors 
-      && FormRegistro.controls.Cuit.errors.required">
-          Dato requerido.
+      <span class="text-danger" *ngIf="(FormRegistro.controls.Cuit.touched || submitted) 
+        && FormRegistro.controls.Cuit.errors?.required">
+        Dato requerido.
       </span>
       <span class="text-danger" *ngIf="FormRegistro.controls.Cuit.errors?.pattern">
         Dato numérico, 11 digitos.
@@ -157,8 +157,8 @@
       </label>
       <div class="col-sm-6">
         <input type="text" class="form-control" formControlName="FechaNacimiento" />
-      <span class="text-danger" *ngIf="FormRegistro.controls.FechaNacimiento.errors 
-      && FormRegistro.controls.FechaNacimiento.errors.required">
+      <span class="text-danger" *ngIf="(FormRegistro.controls.FechaNacimiento.touched || submitted) 
+          && FormRegistro.controls.FechaNacimiento.errors?.required">
           Dato requerido.
       </span>
       <span class="text-danger" *ngIf="(FormRegistro.controls.FechaNacimiento.touched || submitted) 
@@ -192,7 +192,7 @@
   </div>
 
   <!--texto: Revisar los datos ingresados...-->
-  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="false">
+  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="FormRegistro.invalid">
     <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
   </div>
 </form>
