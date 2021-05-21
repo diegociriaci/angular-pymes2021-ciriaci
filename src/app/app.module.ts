@@ -27,6 +27,8 @@ import { MyInterceptor } from './shared/my-interceptor';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { MockClientesService } from './services/mock-clientes.service';
 import { ClientesService } from './services/clientes.service';
+import { EmpresasComponent } from './components/empresas/empresas.component';
+import { EmpresasService } from './services/empresas.service';
 
 @NgModule({
   imports: [
@@ -38,7 +40,8 @@ import { ClientesService } from './services/clientes.service';
       { path: 'inicio', component: InicioComponent },
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
       { path: 'articulos', component: ArticulosComponent },
-      { path: 'clientes', component: ClientesComponent }
+      { path: 'clientes', component: ClientesComponent },
+      { path: 'empresas', component: EmpresasComponent }
     ]),
     ReactiveFormsModule,
     NgbPaginationModule,
@@ -52,7 +55,8 @@ import { ClientesService } from './services/clientes.service';
     MenuComponent,
     ArticulosComponent,
     ModalDialogComponent,
-    ClientesComponent
+    ClientesComponent,
+    EmpresasComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
