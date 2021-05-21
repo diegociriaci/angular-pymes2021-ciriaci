@@ -104,11 +104,15 @@
                 Nombre <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Nombre" />
+        <input type="text" class="form-control text-uppercase" formControlName="Nombre" />
       <span class="text-danger" *ngIf="FormRegistro.controls.Nombre.errors 
       && FormRegistro.controls.Nombre.errors.required">
           Dato requerido.
       </span>
+      <span class="text-danger" *ngIf="
+                       FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength ">
+                    Dato texto, 4 a 55 caracteres.
+                </span>
       </div>
     </div>
 
@@ -122,6 +126,9 @@
       <span class="text-danger" *ngIf="FormRegistro.controls.CreditoMaximo.errors 
       && FormRegistro.controls.CreditoMaximo.errors.required">
           Dato requerido.
+      </span>
+      <span class="text-danger" *ngIf="FormRegistro.controls.CreditoMaximo.errors?.pattern">
+        Dato numérico, 1 a 7 dígitos.
       </span>
       </div>
     </div>
@@ -137,6 +144,9 @@
       && FormRegistro.controls.Cuit.errors.required">
           Dato requerido.
       </span>
+      <span class="text-danger" *ngIf="FormRegistro.controls.Cuit.errors?.pattern">
+        Dato numérico, 11 digitos.
+      </span>
       </div>
     </div>
 
@@ -150,6 +160,10 @@
       <span class="text-danger" *ngIf="FormRegistro.controls.FechaNacimiento.errors 
       && FormRegistro.controls.FechaNacimiento.errors.required">
           Dato requerido.
+      </span>
+      <span class="text-danger" *ngIf="(FormRegistro.controls.FechaNacimiento.touched || submitted) 
+          && FormRegistro.controls.FechaNacimiento.errors?.pattern">
+          Dato fecha, formato dd/mm/aaaa.
       </span>
       </div>
     </div>
