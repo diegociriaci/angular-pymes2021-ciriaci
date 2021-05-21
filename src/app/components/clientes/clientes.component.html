@@ -104,7 +104,11 @@
                 Nombre <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Nombre"/>
+        <input type="text" class="form-control" formControlName="Nombre" />
+      <span class="text-danger" *ngIf="FormRegistro.controls.Nombre.errors 
+      && FormRegistro.controls.Nombre.errors.required">
+          Dato requerido.
+      </span>
       </div>
     </div>
 
@@ -114,7 +118,11 @@
                 Credito Maximo <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="CreditoMaximo"/>
+        <input type="text" class="form-control" formControlName="CreditoMaximo" />
+      <span class="text-danger" *ngIf="FormRegistro.controls.CreditoMaximo.errors 
+      && FormRegistro.controls.CreditoMaximo.errors.required">
+          Dato requerido.
+      </span>
       </div>
     </div>
 
@@ -124,7 +132,11 @@
                 CUIT <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Cuit"/>
+        <input type="text" class="form-control" formControlName="Cuit" />
+      <span class="text-danger" *ngIf="FormRegistro.controls.Cuit.errors 
+      && FormRegistro.controls.Cuit.errors.required">
+          Dato requerido.
+      </span>
       </div>
     </div>
 
@@ -134,7 +146,11 @@
         Fecha de Nacimiento <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="fechaNacimiento"/>
+        <input type="text" class="form-control" formControlName="FechaNacimiento" />
+      <span class="text-danger" *ngIf="FormRegistro.controls.FechaNacimiento.errors 
+      && FormRegistro.controls.FechaNacimiento.errors.required">
+          Dato requerido.
+      </span>
       </div>
     </div>
 
