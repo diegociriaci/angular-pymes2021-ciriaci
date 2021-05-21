@@ -75,7 +75,8 @@
         <span class="label label-default">Registros: {{RegistrosTotal}}</span>
       </div>
       <div class="col text-center">
-        Directiva paginador aqui
+        <ngb-pagination [(page)]="Pagina" (pageChange)="Buscar()" [pageSize]="10" [maxSize]="10"
+          [collectionSize]="RegistrosTotal"></ngb-pagination>
       </div>
       <div class="col text-right">
         <button type="button" class="btn btn-primary" (click)="ImprimirListado()">
