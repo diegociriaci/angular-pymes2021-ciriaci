@@ -66,36 +66,38 @@ export class ClientesComponent implements OnInit {
 
   Agregar() {
     this.AccionABMC = 'A';
-    this.FormRegistro.reset({ Activo: true, IdArticulo: 0 });
+    this.FormRegistro.reset({ Activo: true, IdCliente: 0 });
     this.submitted = false;
     this.FormRegistro.markAsUntouched();
   }
 
    // Buscar segun los filtros, establecidos en FormRegistro
  Buscar() {
-    this.modalDialogService.BloquearPantalla();
     this.clientesService
-      .get(this.FormBusqueda.value.Nombre, this.FormBusqueda.value.Activo, this.Pagina)
+      .get(
+        this.FormBusqueda.value.Nombre, 
+        this.FormBusqueda.value.Activo, 
+        this.Pagina
+        )
       .subscribe((res: any) => {
         this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
-        this.modalDialogService.DesbloquearPantalla();
       });
   }
 
   // Obtengo un registro especifico según el Id
   BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
- 
-    this.clientesService.getById(Dto.IdCliente).subscribe((res: any) => {
-  
-      const itemCopy = { ...res };  // hacemos copia para no modificar el array original del mock
-      
-      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("-");
-      itemCopy.FechaNacimiento = arrFecha[2] + "/" + arrFecha[1] + "/" + arrFecha[0];
 
-      this.FormRegistro.patchValue(itemCopy);
+    this.clientesService.getById(Dto.IdCliente).subscribe((res: any) => {
+      this.FormRegistro.patchValue(res);
+
+      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
+      var arrFecha = res.FechaNacimiento.substr(0, 10).split('-');
+      this.FormRegistro.controls.FechaNacimiento.patchValue(
+        arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0]
+      );
+
       this.AccionABMC = AccionABMC;
     });
   }

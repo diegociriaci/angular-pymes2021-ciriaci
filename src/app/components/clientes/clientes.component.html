@@ -7,14 +7,14 @@
             Nombre:
         </label>
     <div class="col-sm-3">
-      <input type="text" name="Nombre" class="form-control" />
+      <input type="text" name="Nombre" class="form-control" formControlName="Nombre"/>
     </div>
     <label class="col-form-label col-sm-2  text-left">
             Activo:
         </label>
     <div class="col-sm-3">
-      <select class="form-control" name="Activo" >
-            <option *ngFor="let opt of OpcionesActivo">
+      <select class="form-control" name="Activo" formControlName="Activo">
+            <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
                         {{ opt.Nombre }}
             <option>            
           </select>

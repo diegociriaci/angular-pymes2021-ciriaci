@@ -211,7 +211,7 @@ export class ArticulosComponent implements OnInit {
   }
 
   ImprimirListado() {
-    alert('Sin desarrollar...');
+    this.modalDialogService.Alert('Sin desarrollar...');
   }
 
   GetArticuloFamiliaNombre(Id) {
