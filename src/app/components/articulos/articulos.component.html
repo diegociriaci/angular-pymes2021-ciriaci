@@ -102,6 +102,7 @@
 <!-- Registro en Alta,Modificacion o Consulta -->
 <form name="FormRegistro" [formGroup]='FormRegistro' class="bg-light" *ngIf="AccionABMC != 'L'">
   <fieldset [disabled]="AccionABMC==='C'">
+
     <!--campo nombre-->
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2" for="Nombre">
@@ -202,7 +203,7 @@
       </div>
     </div>
 
-    <!--campo fechaalta-->
+    <!--campo fecha de alta-->
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2">
                 Fecha de alta <span class="text-danger">*</span>

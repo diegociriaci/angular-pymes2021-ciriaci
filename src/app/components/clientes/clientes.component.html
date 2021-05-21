@@ -20,6 +20,7 @@
           </select>
     </div>
   </div>
+  
   <!-- Botones -->
   <div class="row justify-content-center">
     <button type="button" class="btn btn-primary" (click)="Pagina=1;Buscar();">
@@ -96,8 +97,8 @@
 
 <!-- Registro en Alta,Modificacion o Consulta -->
 <form name="FormRegistro" [formGroup]='FormRegistro' class="bg-light" *ngIf="AccionABMC != 'L'">
-
   <fieldset [disabled]="AccionABMC==='C'">
+
     <!--campo nombre-->
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2" for="Nombre">
@@ -124,7 +125,7 @@
                 Credito Maximo <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="CreditoMaximo" 
+        <input type="text" name="CreditoMaximo" class="form-control" formControlName="CreditoMaximo"
          [ngClass]="{'is-invalid': (FormRegistro.controls.CreditoMaximo.touched || submitted)  
             && FormRegistro.controls.CreditoMaximo.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.CreditoMaximo.touched || submitted) 
@@ -143,7 +144,7 @@
                 CUIT <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Cuit" 
+        <input type="text" name="Cuit" class="form-control" formControlName="Cuit" 
          [ngClass]="{'is-invalid': (FormRegistro.controls.Cuit.touched || submitted)  
             && FormRegistro.controls.Cuit.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.Cuit.touched || submitted) 
@@ -162,7 +163,7 @@
         Fecha de Nacimiento <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="FechaNacimiento" 
+        <input class="form-control" formControlName="FechaNacimiento"name="FechaNacimiento" 
          [ngClass]="{'is-invalid': (FormRegistro.controls.FechaNacimiento.touched || submitted)  
             && FormRegistro.controls.FechaNacimiento.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.FechaNacimiento.touched || submitted) 

@@ -71,17 +71,15 @@ export class ClientesComponent implements OnInit {
     this.FormRegistro.markAsUntouched();
   }
 
-  // Buscar segun los filtros, establecidos en FormRegistro
-  Buscar() {
+   // Buscar segun los filtros, establecidos en FormRegistro
+ Buscar() {
+    this.modalDialogService.BloquearPantalla();
     this.clientesService
-      .get(
-        this.FormBusqueda.value.Nombre,
-        this.FormBusqueda.value.Activo,
-        this.Pagina
-      )
+      .get(this.FormBusqueda.value.Nombre, this.FormBusqueda.value.Activo, this.Pagina)
       .subscribe((res: any) => {
         this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
+        this.modalDialogService.DesbloquearPantalla();
       });
   }
 
@@ -101,7 +99,6 @@ export class ClientesComponent implements OnInit {
       this.AccionABMC = AccionABMC;
     });
   }
-
 
   Consultar(Dto) {
     this.BuscarPorId(Dto, 'C');
@@ -125,6 +122,7 @@ export class ClientesComponent implements OnInit {
      if (this.FormRegistro.invalid) {
       return;
      }
+
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
     const itemCopy = { ...this.FormRegistro.value };
  
@@ -142,7 +140,7 @@ export class ClientesComponent implements OnInit {
     if (this.AccionABMC == "A") {
       this.clientesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
-        alert('Registro agregado correctamente.');
+        this.modalDialogService.Alert('Registro agregado correctamente.');
         this.Buscar();
       });
     } else {
@@ -151,27 +149,29 @@ export class ClientesComponent implements OnInit {
         .put(itemCopy.IdCliente, itemCopy)
         .subscribe((res: any) => {
           this.Volver();
-          alert('Registro modificado correctamente.');
+          this.modalDialogService.Alert('Registro modificado correctamente.');
           this.Buscar();
         });
     }
   }
 
-
   // representa la baja logica 
   ActivarDesactivar(Dto) {
-    var resp = confirm(
+    this.modalDialogService.Confirm(
       "Esta seguro de " +
         (Dto.Activo ? "desactivar" : "activar") +
-        " este registro?");
-    if (resp === true)
-    {
-     this.clientesService  
+        " este registro?",
+      undefined,
+      undefined,
+      undefined,
+      () =>
+        this.clientesService  
           .delete(Dto.IdCliente)
           .subscribe((res: any) => 
             this.Buscar()
-          );
-    }
+          ),
+      null
+    );
   }
 
   // Volver desde Agregar/Modificar
@@ -180,6 +180,6 @@ export class ClientesComponent implements OnInit {
   }
 
   ImprimirListado() {
-    alert('Sin desarrollar...');
+    this.modalDialogService.Alert('Sin desarrollar...');
   }
 }
