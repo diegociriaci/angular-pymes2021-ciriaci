@@ -113,6 +113,8 @@ export class ClientesComponent implements OnInit {
       this.modalDialogService.Alert('No puede modificarse un registro Inactivo.');
       return;
     }
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
     this.BuscarPorId(Dto, 'M');
   }
 

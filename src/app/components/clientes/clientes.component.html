@@ -104,7 +104,9 @@
                 Nombre <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control text-uppercase" formControlName="Nombre" />
+        <input type="text" class="form-control" formControlName="Nombre" 
+         [ngClass]="{'is-invalid': (FormRegistro.controls.Nombre.touched || submitted)  
+            && FormRegistro.controls.Nombre.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.Nombre.touched || submitted) 
         && FormRegistro.controls.Nombre.errors?.required">
         Dato requerido.
@@ -122,7 +124,9 @@
                 Credito Maximo <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="CreditoMaximo" />
+        <input type="text" class="form-control" formControlName="CreditoMaximo" 
+         [ngClass]="{'is-invalid': (FormRegistro.controls.CreditoMaximo.touched || submitted)  
+            && FormRegistro.controls.CreditoMaximo.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.CreditoMaximo.touched || submitted) 
         && FormRegistro.controls.CreditoMaximo.errors?.required">
         Dato requerido.
@@ -139,7 +143,9 @@
                 CUIT <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Cuit" />
+        <input type="text" class="form-control" formControlName="Cuit" 
+         [ngClass]="{'is-invalid': (FormRegistro.controls.Cuit.touched || submitted)  
+            && FormRegistro.controls.Cuit.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.Cuit.touched || submitted) 
         && FormRegistro.controls.Cuit.errors?.required">
         Dato requerido.
@@ -156,7 +162,9 @@
         Fecha de Nacimiento <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="FechaNacimiento" />
+        <input type="text" class="form-control" formControlName="FechaNacimiento" 
+         [ngClass]="{'is-invalid': (FormRegistro.controls.FechaNacimiento.touched || submitted)  
+            && FormRegistro.controls.FechaNacimiento.errors}" />
       <span class="text-danger" *ngIf="(FormRegistro.controls.FechaNacimiento.touched || submitted) 
           && FormRegistro.controls.FechaNacimiento.errors?.required">
           Dato requerido.
@@ -192,7 +200,7 @@
   </div>
 
   <!--texto: Revisar los datos ingresados...-->
-  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="FormRegistro.invalid">
+  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="submitted && FormRegistro.invalid" >
     <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
   </div>
 </form>
