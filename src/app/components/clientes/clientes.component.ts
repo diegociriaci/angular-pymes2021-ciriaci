@@ -50,7 +50,17 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {this.FormBusqueda = this.formBuilder.group({
       Nombre: [null],
       Activo: [null]
-    });}
+    });
+    this.FormRegistro = this.formBuilder.group({
+      IdCliente: [null],
+      Nombre: [null],
+      Cuit: [null],
+      CreditoMaximo: [null],
+      FechaNacimiento: [null],
+      Activo: [false]
+    });
+
+    }
 
   Agregar() {
     this.AccionABMC = 'A';

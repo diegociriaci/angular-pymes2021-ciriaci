@@ -1,7 +1,7 @@
 <h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
 
 <!-- Formulario Filtro de búsqueda, se ve cuando la AccionABMC es "L"(busqueda/listado)-->
-<form name="FormBusqueda" class="bg-light" *ngIf="AccionABMC == 'L'">
+<form name="FormBusqueda" [formGroup]='FormBusqueda' class="bg-light" *ngIf="AccionABMC == 'L'">
   <div class="form-group row">
     <label class="col-form-label col-sm-2 offset-sm-1">
             Nombre:
@@ -95,7 +95,7 @@
 </div>
 
 <!-- Registro en Alta,Modificacion o Consulta -->
-<form name="FormRegistro" class="bg-light" *ngIf="AccionABMC != 'L'">
+<form name="FormRegistro" [formGroup]='FormRegistro' class="bg-light" *ngIf="AccionABMC != 'L'">
 
   <fieldset [disabled]="AccionABMC==='C'">
     <!--campo nombre-->
@@ -104,7 +104,7 @@
                 Nombre <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" formControlName="Nombre"/>
       </div>
     </div>
 
@@ -114,7 +114,7 @@
                 Credito Maximo <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" name="CreditoMaximo" class="form-control" />
+        <input type="text" class="form-control" formControlName="CreditoMaximo"/>
       </div>
     </div>
 
@@ -124,8 +124,7 @@
                 CUIT <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input type="text" name="Cuit" class="form-control" />
-
+        <input type="text" class="form-control" formControlName="Cuit"/>
       </div>
     </div>
 
@@ -135,8 +134,7 @@
                 Fecha de Nacimiento <span class="text-danger">*</span>
             </label>
       <div class="col-sm-6">
-        <input class="form-control"
-                       name="FechaNacimiento" />
+        <input type="text" class="form-control" formControlName="fechaNacimiento"/>
       </div>
     </div>
 
@@ -144,27 +142,27 @@
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2" for="Activo">Activo</label>
       <div class="col-sm-6">
-        <select name="Activo" [attr.disabled]="true" class="form-control">
-                    <option *ngFor="let opt of OpcionesActivo">
-                        {{ opt.Nombre }}
-                    <option>
-                </select>
+        <select name="Activo" [attr.disabled]="true" class="form-control" formControlName="Activo">
+          <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
+            {{ opt.Nombre }}
+          <option>
+        </select>
       </div>
     </div>
   </fieldset>
 
   <!-- Botones Grabar, Cancelar/Volver' -->
-    <div class="row justify-content-center">
-        <button type="button" class="btn btn-primary" (click)="Grabar()" *ngIf=" AccionABMC == 'A'  || AccionABMC == 'M'"  >
+  <div class="row justify-content-center">
+    <button type="button" class="btn btn-primary" (click)="Grabar()" *ngIf=" AccionABMC == 'A'  || AccionABMC == 'M'"  >
             <span class="fas fa-check"></span> Grabar
         </button>
-        <button type="button" class="btn btn-warning" (click)="Volver()">
+    <button type="button" class="btn btn-warning" (click)="Volver()">
             <span class="fas fa-undo"></span> {{AccionABMC == 'A'  || AccionABMC == 'M' ? 'Cancelar' : 'Volver'}}
         </button>
-    </div>
+  </div>
 
-    <!--texto: Revisar los datos ingresados...-->
-    <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="false">
-        <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
-    </div>
+  <!--texto: Revisar los datos ingresados...-->
+  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="false">
+    <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
+  </div>
 </form>
