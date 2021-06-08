@@ -33,6 +33,8 @@ import { ContactosComponent } from './components/contactos/contactos.component';
 import { ContactosService } from './services/contactos.service';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { CategoriasService } from './services/categorias.service';
+import { PersonasComponent } from './components/personas/personas.component';
+import { PersonasService } from './services/personas.service';
 
 @NgModule({
   imports: [
@@ -47,7 +49,8 @@ import { CategoriasService } from './services/categorias.service';
       { path: 'clientes', component: ClientesComponent },
       { path: 'empresas', component: EmpresasComponent },
       { path: 'contactos', component: ContactosComponent },
-      { path: 'categorias', component: CategoriasComponent }
+      { path: 'categorias', component: CategoriasComponent },
+      { path: 'personas', component: PersonasComponent }
     ]),
     ReactiveFormsModule,
     NgbPaginationModule,
@@ -65,6 +68,7 @@ import { CategoriasService } from './services/categorias.service';
     EmpresasComponent,
     ContactosComponent,
     CategoriasComponent,
+    PersonasComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
