@@ -1,15 +1,7 @@
 <h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
 	<!-- Formulario Filtro de búsqueda, se ve cuando la AccionABMC es "L"(busqueda/listado)-->
 <form name="FormBusqueda" [formGroup]='FormBusqueda' class="bg-light" *ngIf="AccionABMC == 'L'" >
-  <div class="form-group row">
-    <label class="col-form-label col-sm-2 offset-sm-1">
-            Nombre:
-        </label>
-    <div class="col-sm-3">
-      <input type="text" name="Nombre" class="form-control" formControlName="Nombre"/>
-        </div>
-
-    </div>
+  
     <!-- Botones -->
     <div class="row justify-content-center">
       <button type="button" class="btn btn-primary" (click)="Pagina=1;Buscar();">
