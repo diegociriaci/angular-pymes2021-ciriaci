@@ -8,16 +8,7 @@
     <div class="col-sm-3">
       <input type="text" name="Nombre" class="form-control" formControlName="Nombre"/>
         </div>
-      <label class="col-form-label col-sm-2  text-left">
-            Activo:
-        </label>
-      <div class="col-sm-3">
-        <select class="form-control" name="Activo" formControlName="Activo">
-          <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
-                        {{ opt.Nombre }}
-            <option>            
-          </select>
-      </div>
+
     </div>
     <!-- Botones -->
     <div class="row justify-content-center">
@@ -39,7 +30,6 @@
                 <th class="text-center">Razon Social</th>
                 <th class="text-center">Cantidad de Empleados</th>
                 <th class="text-center">Fecha de Fundacion</th>
-                <th class="text-center">Activo</th>
                 <th class="text-center text-nowrap">Acciones</th>
             </tr>
         </thead>
@@ -48,17 +38,9 @@
                 <td>{{item.RazonSocial | uppercase}}</td>
 		            <td class="text-right">{{item.CantidadEmpleados}}</td>
                 <td>{{item.FechaFundacion| date:'dd/MM/yyyy'}}</td>
-                <td>{{item.Activo ? 'SI' : 'NO'}}</td>
                 <td class="text-center text-nowrap">
                     <button type="button" class="btn btn-sm btn-outline-primary" title="Consultar" (click)="Consultar(item)">
                         <span class="fas fa-eye"></span>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-primary" title="Modificar" (click)="Modificar(item)">
-                        <span class="fas fa-pencil-alt"></span>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-{{ item.Activo ? 'danger':'success'}}"
-                            title="{{item.Activo ? 'Desactivar':'Activar'}}" (click)="ActivarDesactivar(item)">
-                        <span class="fas fa-{{item.Activo ? 'times':'check'}}"></span>
                     </button>
                 </td>
             </tr>
@@ -129,7 +111,7 @@
       </span>
 	<span class="text-danger" *ngIf="(FormRegistro.controls.CantidadEmpleados.touched || submitted) 
           && FormRegistro.controls.CantidadEmpleados.errors?.pattern">
-        Dato numérico, 11 digitos.
+        Dato numérico.
       </span>
             </div>
         </div>
@@ -154,17 +136,6 @@
             </div>
         </div>
 
-        <!--campo activo-->
-        <div class="form-group row">
-            <label class="col-form-label col-sm-2 offset-sm-2" for="Activo">Activo</label>
-            <div class="col-sm-6">
-                <select name="Activo" [attr.disabled]="true" class="form-  control" formControlName="Activo">
-          <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
-            {{ opt.Nombre }}
-          <option>
-        </select>
-            </div>
-        </div>
     </fieldset>
 
     <!-- Botones Grabar, Cancelar/Volver' -->

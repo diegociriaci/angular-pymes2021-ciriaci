@@ -17,17 +17,8 @@ export class EmpresasService {
     this.resourceUrl = "https://labsys.frc.utn.edu.ar:8443/api/empresas/";
   }
 
-  get(Nombre: string, Activo: boolean, Pagina: number) {
-    let params = new HttpParams();
-    if (Nombre != null) {
-      params = params.append("Nombre", Nombre);
-    }
-    if (Activo != null) {   // para evitar error de null.ToString()
-      params = params.append("Activo", Activo.toString());
-    }
-    params = params.append("Pagina", Pagina.toString());
-
-    return this.httpClient.get(this.resourceUrl, { params: params });
+  get() {
+    return this.httpClient.get(this.resourceUrl);
   }
 
   getById(Id: number) {

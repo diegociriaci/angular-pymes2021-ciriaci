@@ -29,14 +29,6 @@ export class EmpresasComponent implements OnInit {
   RegistrosTotal: number;
   Pagina = 1; // inicia pagina 1
 
-  // opciones del combo activo
-  OpcionesActivo = [
-    { Id: null, Nombre: "" },
-    { Id: true, Nombre: "SI" },
-    { Id: false, Nombre: "NO" }
-  ];
-
-
   constructor(
    public formBuilder: FormBuilder,
    private empresasService: EmpresasService,
@@ -50,17 +42,15 @@ export class EmpresasComponent implements OnInit {
 
   ngOnInit() { this.FormBusqueda = this.formBuilder.group({
       Nombre: [null],
-      Activo: [null]
     });
       this.FormRegistro = this.formBuilder.group({
       IdEmpresa: [null],
       RazonSocial: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      CantidadEmpleados: [null, [Validators.required, Validators.pattern('[0-9]{11}')]  ],
+      CantidadEmpleados: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]  ],
       FechaFundacion: [null, [Validators.required, Validators.pattern(
             '(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[012])[-/](19|20)[0-9]{2}'
           )
 ]  ],
-      Activo: [false]
     });
 
       }
@@ -76,7 +66,7 @@ export class EmpresasComponent implements OnInit {
 // Buscar segun los filtros, establecidos en FormRegistro
  Buscar() {
     this.empresasService
-      .get(this.FormBusqueda.value.RazonSocial, this.FormBusqueda.value.Activo, this.Pagina)
+      .get()
       .subscribe((res: any) => {
         this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
@@ -100,20 +90,8 @@ export class EmpresasComponent implements OnInit {
     });
   }
 
-
   Consultar(Dto) {
     this.BuscarPorId(Dto, "C");
-  }
-
-  // comienza la modificacion, luego la confirma con el metodo Grabar
-  Modificar(Dto) {
-    if (!Dto.Activo) {
-      this.modalDialogService.Alert("No puede modificarse un registro Inactivo.");
-      return;
-    }
-  this.submitted = false;
-  this.FormRegistro.markAsUntouched();
-  this.BuscarPorId(Dto, "M");
   }
 
 // grabar tanto altas como modificaciones
