@@ -57,17 +57,15 @@ export class EmpresasComponent implements OnInit {
 
   Agregar() {
     this.AccionABMC = "A";
-    this.FormRegistro.reset({ Activo: true, IdEmpresa: 0 });
+    this.FormRegistro.reset({IdEmpresa: 0 });
     this.submitted = false;
     this.FormRegistro.markAsUntouched();
 
   }
 
 // Buscar segun los filtros, establecidos en FormRegistro
- Buscar() {
-    this.empresasService
-      .get()
-      .subscribe((res: any) => {
+  Buscar() {
+    this.empresasService.get().subscribe((res: any) => {
         this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
       });
@@ -132,25 +130,6 @@ export class EmpresasComponent implements OnInit {
           this.Buscar();
         });
     }
-  }
-
-// representa la baja logica 
-  ActivarDesactivar(Dto) {
-    this.modalDialogService.Confirm(
-      "Esta seguro de " +
-        (Dto.Activo ? "desactivar" : "activar") +
-        " este registro?",
-      undefined,
-      undefined,
-      undefined,
-      () =>
-        this.empresasService  
-          .delete(Dto.IdEmpresa)
-          .subscribe((res: any) => 
-            this.Buscar()
-          ),
-      null
-    );
   }
 
   // Volver desde Agregar/Modificar
