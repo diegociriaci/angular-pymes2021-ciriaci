@@ -14,7 +14,7 @@ import { Cliente } from "../models/cliente";
 export class ClientesService {
   resourceUrl: string;
   constructor(private httpClient: HttpClient) {
-    this.resourceUrl = "https://pav2.azurewebsites.net/api/clientes";
+    this.resourceUrl = "https://labsys.frc.utn.edu.ar:8443/api/clientes";
   }
 
   get(Nombre: string, Activo: boolean, Pagina: number) {
