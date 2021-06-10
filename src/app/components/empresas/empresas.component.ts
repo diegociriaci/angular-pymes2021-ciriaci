@@ -92,6 +92,13 @@ export class EmpresasComponent implements OnInit {
     this.BuscarPorId(Dto, "C");
   }
 
+// comienza la modificacion, luego la confirma con el metodo Grabar
+  Modificar(Dto) {
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
+    this.BuscarPorId(Dto, 'M');
+  }
+
 // grabar tanto altas como modificaciones
   Grabar() {
 	this.submitted = true;

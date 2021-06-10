@@ -14,7 +14,7 @@ export class CategoriasService {
   resourceUrl: string;
   constructor(private httpClient: HttpClient) {
     this.resourceUrl =
-      "https://pav2.azurewebsites.net/api/categorias";
+      "https://pav2.azurewebsites.net/api/categorias/";
   }
 
   get() {

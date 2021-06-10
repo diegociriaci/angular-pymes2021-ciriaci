@@ -14,7 +14,7 @@ export class PersonasService {
   resourceUrl: string;
   constructor(private httpClient: HttpClient) {
     this.resourceUrl =
-      "https://pav2.azurewebsites.net/api/personas";
+      "https://pav2.azurewebsites.net/api/personas/";
   }
 
   get() {

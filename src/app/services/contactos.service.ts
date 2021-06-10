@@ -14,7 +14,7 @@ import { Contacto } from "../models/contacto";
 export class ContactosService {
   resourceUrl: string;
   constructor(private httpClient: HttpClient) {
-    this.resourceUrl = "https://pav2.azurewebsites.net/api/contactos";
+    this.resourceUrl = "https://pav2.azurewebsites.net/api/contactos/";
   }
 
   get() {
