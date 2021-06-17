@@ -35,6 +35,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { CategoriasService } from './services/categorias.service';
 import { PersonasComponent } from './components/personas/personas.component';
 import { PersonasService } from './services/personas.service';
+import { VentasComponent } from './components/ventas/ventas.component';
+import { VentasService } from './services/ventas.service';
 
 @NgModule({
   imports: [
@@ -50,7 +52,8 @@ import { PersonasService } from './services/personas.service';
       { path: 'empresas', component: EmpresasComponent },
       { path: 'contactos', component: ContactosComponent },
       { path: 'categorias', component: CategoriasComponent },
-      { path: 'personas', component: PersonasComponent }
+      { path: 'personas', component: PersonasComponent },
+      { path: 'ventas', component: VentasComponent }
     ]),
     ReactiveFormsModule,
     NgbPaginationModule,
@@ -69,6 +72,7 @@ import { PersonasService } from './services/personas.service';
     ContactosComponent,
     CategoriasComponent,
     PersonasComponent,
+    VentasComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -78,7 +82,7 @@ import { PersonasService } from './services/personas.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,
-      multi: true,
+      multi: true
     }
   ]
 })
